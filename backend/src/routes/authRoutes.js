@@ -45,16 +45,48 @@ router.post("/register", async (request, response) => {
         id: user._id,
         username: user.username,
         email: user.email,
-        profileImage: user.profileImage
+        profileImage: user.profileImage,
       }
     });
   } catch (error) {
     console.error("Error during user registration:", error);
     response.status(500).json({ message: "Internal server error" });
   }
-})
+});
+
 router.post("/login", async (request, response) => {
-  response.send("login")
+  try {
+    const { email, password } = request.body;
+    if (!email || !password) {
+      return response.status(400).json({ message: "All fields are required" });
+    }
+
+    // check if user exists in the database
+    const user = await User.findOne({ email });
+    if (!user) {
+      return response.status(400).json({ message: "User does not exist" });
+    }
+
+    // check if password is correct
+    const isPasswordCorrect = await user.comparePassword(password);
+    if (!isPasswordCorrect) {
+      return response.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const token = generateToken(user._id);
+    response.status(200).json({
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        profileImage: user.profileImage
+      }
+    });
+  } catch (error) {
+    console.error("Error during user login:", error);
+    response.status(500).json({ message: "Internal server error" });
+  }
 })
 
 export default router;
