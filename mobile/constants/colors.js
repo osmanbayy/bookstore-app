@@ -14,19 +14,19 @@
 // };
 
 // FOREST DARK
-const COLORS = {
-  primary: "#66BB6A",
-  textPrimary: "#E3F2E3",
-  textSecondary: "#A5C9A5",
-  textDark: "#C8E6C9",
-  placeholderText: "#8FAF8F",
-  background: "#0F1A12",
-  cardBackground: "#16241A",
-  inputBackground: "#1B2E20",
-  border: "#2E4A34",
-  white: "#ffffff",
-  black: "#000000",
-};
+// const COLORS = {
+//   primary: "#66BB6A",
+//   textPrimary: "#E3F2E3",
+//   textSecondary: "#A5C9A5",
+//   textDark: "#C8E6C9",
+//   placeholderText: "#8FAF8F",
+//   background: "#0F1A12",
+//   cardBackground: "#16241A",
+//   inputBackground: "#1B2E20",
+//   border: "#2E4A34",
+//   white: "#ffffff",
+//   black: "#000000",
+// };
 
 
 // RETRO
@@ -76,19 +76,19 @@ const COLORS = {
 // };
 
 // OCEAN DARK
-// const COLORS = {
-//   primary: "#42A5F5",
-//   textPrimary: "#E3F2FD",
-//   textSecondary: "#9FC5E8",
-//   textDark: "#BBDEFB",
-//   placeholderText: "#7FA6C8",
-//   background: "#0B1620",
-//   cardBackground: "#122230",
-//   inputBackground: "#152A3D",
-//   border: "#1F3A52",
-//   white: "#ffffff",
-//   black: "#000000",
-// };
+const COLORS = {
+  primary: "#42A5F5",
+  textPrimary: "#E3F2FD",
+  textSecondary: "#9FC5E8",
+  textDark: "#BBDEFB",
+  placeholderText: "#7FA6C8",
+  background: "#0B1620",
+  cardBackground: "#122230",
+  inputBackground: "#152A3D",
+  border: "#1F3A52",
+  white: "#ffffff",
+  black: "#000000",
+};
 
 
 
