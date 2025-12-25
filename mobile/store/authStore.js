@@ -34,5 +34,50 @@ export const useAuthStore = create((set) => ({
     } finally {
       set({ isLoading: false });
     }
-  }
+  },
+
+  login: async (email, password) => {
+    set({ isLoading: true });
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+      await AsyncStorage.setItem("user", JSON.stringify(data.user));
+      await AsyncStorage.setItem("token", data.token);
+
+      set({ user: data.user, token: data.token, isLoading: false });
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message };
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  checkAuth: async () => {
+    try {
+      const token = await AsyncStorage.getItem("token");
+      const userJson = await AsyncStorage.getItem("user");
+      const user = userJson ? JSON.parse(userJson) : null;
+
+      set({ user, token });
+    } catch (error) {
+      console.error("Failed to load auth data", error);
+    }
+  },
+
+  logout: async () => {
+    await AsyncStorage.removeItem("user");
+    await AsyncStorage.removeItem("token");
+    set({ user: null, token: null });
+  },
 }));
